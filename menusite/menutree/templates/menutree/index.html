@@ -1,0 +1,58 @@
+{% load menu_tags %}
+
+{% menu_id as menu_id %}
+{% menu as menu %}
+{% main_menu as main_menu %}
+{{ main_menu.mother_menu.id }}
+
+
+
+
+{% if id in menu_id %}
+{% get_ways id=id as gw%}
+<ul>
+{% for way in gw %}
+    <li>
+    <a href="{% url 'mainmenu'  way.id %}"/>{{ way }}</a>
+        </li>
+{% endfor %}
+    </ul>
+
+
+
+<!--{% all_way id=id as all_way %}-->
+   <!-- {% for daughter in menu %}
+        {% if daughter.mother_menu.id == id %}
+            <ul>
+                <a href="{% url 'mainmenu'  daughter.id %}"/>{{ daughter }}</a> </ul>
+                {% for granddaughter in menu %}
+                    {% if granddaughter.mother_menu.id == daughter.id %}
+                    <li><a href="{% url 'mainmenu'  granddaughter.id %}"/>{{ granddaughter }}</a></li>
+                    {% endif %}
+                {% endfor %}
+        {% endif %}
+    {% endfor %} -->
+   <!-- {% for m in menu %}
+
+        {% if m.id in all_way %}
+            <ul>
+                <li>{{m}}
+                    <ul>
+            {% for m1 in menu %}
+                {% if m1.id in all_way %}
+                    <li>{{ m1 }}</li>
+                {% endif %}
+            {% endfor %}
+                    </ul>
+                </li>
+            </ul>
+        {% endif %}
+    {% endfor %} -->
+
+<!--{% for m in all_way %}-->
+<!--    <li>{% menu_id filter=m %}</li>-->
+<!--       <ul></ul>-->
+<!--{% endfor %}-->
+{% else %}
+    <p>Менюшка с данным индексом отсутствует {{ menu.id }}</p>
+{% endif %}
