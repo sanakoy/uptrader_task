@@ -10,13 +10,16 @@
 
 {% if id in menu_id %}
 {% get_ways id=id as gw%}
-<ul>
+ <ul>
 {% for way in gw %}
+
     <li>
     <a href="{% url 'mainmenu'  way.id %}"/>{{ way }}</a>
         </li>
+
 {% endfor %}
-    </ul>
+     </ul>
+
 
 
 

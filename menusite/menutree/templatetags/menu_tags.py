@@ -63,21 +63,18 @@ def get_ways(id):
                 arr.append(m)
                 print(m)
             if id == id_way:
-                print('---')
                 for d in Menu.objects.filter(mother_menu=daughter):
-                    print('***')
                     arr.append(d)
                     print(d)
             elif m.id in ways:
                 for d in Menu.objects.filter(mother_menu=m):
                     arr.append(d)
                     print(d)
-
-                for d in Menu.objects.filter(mother_menu=m):
                     if d.id in ways:
                         get_ways_recursion(d.id, d, arr, id_way)
-            # elif daughter == 1:
-            #     print(m)
+
+                # for d in Menu.objects.filter(mother_menu=m):
+        print(arr)
         return arr
     # return id
     return get_ways_recursion(1, 'Главное меню', list_ways, id)
